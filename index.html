@@ -20,27 +20,35 @@
     </style>
   </head>
   <body>
-    <h1>Change text on input</h1>
+    <h1>Bird Google</h1>
     <input id="text-input" />
     <div id="text-wrapper"></div>
     <!-- script -->
     <script>
       const textWrapper = document.getElementById("text-wrapper");
       const textInput = document.getElementById("text-input");
-      const words = "a place,a platter,between,birb,bird,bird seed,conure,conure screaming too much,conure be quiet,conure is annoying,conure drink or bird?,why does it scream,headache,how to get bird poo out of carpet,help,it won't stop screeming,why won't bird stop screaming,can conure talk?,flighted bird,should clip bird wings,bird ate chocolate,bird lick essential oil,bandaids,I live in hell and the devil is a bird,how long does conure live for,pineapple conure,greencheek conure,queen bird,why does it scream,eat seed,right way to cut bird toenails,the bird is queen,yelp review birb hell,utopia for birb,i live with a flighted devil help,oops it flew away,annoying bird how stop?,".split(",");
+      const words = "a place,a platter,between,birb,bird,bird seed,conure,conure screaming too much,conure be quiet,conure is annoying,conure drink or bird?,why does it scream,headache,how to get bird poo out of carpet,help,it won't stop screeming,why won't bird stop screaming,can conure talk?,flighted bird,should clip bird wings,bird ate chocolate,bird lick essential oil,bandaids,I live in hell and the devil is a bird,how long does conure live for,pineapple conure,greencheek conure,queen bird,why does it scream,eat seed,right way to cut bird toenails,the bird is queen,yelp review birb hell,utopia for birb,i live with a flighted devil help,oops it flew away,annoying bird how stop?,How to get blood out of everything,kill,".split(",");
 
       function changeText(e) {
+        const searchWord = e.target.value.toLowerCase().trim();
         const resultWords = words.filter(word =>
-          word.startsWith(e.target.value)
+          word.toLowerCase().startsWith(searchWord)
         );
         // clear exist words
         while (textWrapper.firstChild) {
           textWrapper.removeChild(textWrapper.firstChild);
         }
+        if (searchWord != "") {
         for (var i = 0; i < resultWords.length; i++) {
           const line = document.createElement("div");
           line.innerHTML = resultWords[i];
           textWrapper.appendChild(line);
+        }
+        if (resultWords.length === 0) { 
+          const line = document.createElement("div");
+          line. innerHTML = "No Seed";
+          textWrapper.appendChild(line);
+          }
         }
       }
 
